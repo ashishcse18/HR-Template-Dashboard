@@ -1,0 +1,1 @@
+import {M as MQ}from'./main-WDDTEYRD.js';var chunkKCZ7URL4 = MQ();export{chunkKCZ7URL4 as default};
