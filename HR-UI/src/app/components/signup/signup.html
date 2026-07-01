@@ -1,0 +1,95 @@
+<div class="auth-wrapper">
+  <div class="auth-card card animate-fade-in">
+    <div class="auth-header">
+      <div class="brand-logo-container-auth">
+        <img src="assets/logo.png" alt="TVM Logo" class="brand-logo-file-auth" />
+      </div>
+      <p class="auth-subtitle">HR Document Portal Registration</p>
+    </div>
+
+    <div class="auth-tabs">
+      <button
+        type="button"
+        class="tab-btn active"
+        style="width: 100%; border-radius: var(--radius-md); text-align: center"
+      >
+        Create Account
+      </button>
+    </div>
+
+    <div
+      class="alert-banner"
+      *ngIf="alertMessage()"
+      [ngClass]="alertType() === 'error' ? 'alert-danger' : 'alert-success'"
+    >
+      <i
+        class="fa-solid"
+        [ngClass]="alertType() === 'error' ? 'fa-circle-xmark' : 'fa-circle-check'"
+      ></i>
+      <span>{{ alertMessage() }}</span>
+    </div>
+
+    <form (submit)="onSubmit()">
+      <div class="form-group">
+        <label class="form-label" for="reg-name">Full Name</label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-user input-icon"></i>
+          <input
+            type="text"
+            id="reg-name"
+            class="form-control pad-left"
+            placeholder="e.g. Ashish Kumar"
+            [(ngModel)]="name"
+            name="name"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="reg-email">Email Address</label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-envelope input-icon"></i>
+          <input
+            type="email"
+            id="reg-email"
+            class="form-control pad-left"
+            placeholder="hr@tvminfotech.com"
+            [(ngModel)]="email"
+            name="email"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="reg-pass">Password</label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-lock input-icon"></i>
+          <input
+            type="password"
+            id="reg-pass"
+            class="form-control pad-left"
+            placeholder="••••••••"
+            [(ngModel)]="password"
+            name="password"
+            required
+          />
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block mt-3" [disabled]="loading()">
+        <span *ngIf="!loading()"> <i class="fa-solid fa-user-plus"></i> Register Account </span>
+        <span *ngIf="loading()"> <i class="fa-solid fa-spinner fa-spin"></i> Registering... </span>
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-outline btn-block btn-sm mt-2"
+        (click)="navigateToLogin.emit()"
+      >
+        <i class="fa-solid fa-arrow-left"></i> Back to Sign In
+      </button>
+    </form>
+  </div>
+</div>

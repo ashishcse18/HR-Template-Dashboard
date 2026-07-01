@@ -1,0 +1,56 @@
+<div class="preview-overlay animate-fade-in" *ngIf="isOpen">
+  <div class="preview-modal card">
+    <div class="modal-header justify-content-between">
+      <div class="d-flex align-items-center gap-3">
+        <div class="header-icon">
+          <i class="fa-solid fa-file-pdf"></i>
+        </div>
+
+        <div>
+          <h3>Document Print Preview</h3>
+          <p>Verify details before finalizing download</p>
+        </div>
+      </div>
+
+      <button class="close-btn" (click)="close.emit()">&times;</button>
+    </div>
+
+    <div class="modal-toolbar">
+      <div class="toolbar-actions">
+        <button class="btn btn-primary btn-sm" (click)="downloadPDF()">
+          <i class="fa-solid fa-download"></i>
+          Save PDF
+        </button>
+
+        <button class="btn btn-outline btn-sm" (click)="printDocument()">
+          <i class="fa-solid fa-print"></i>
+          Print
+        </button>
+      </div>
+
+      <div class="zoom-controls">
+        <button class="zoom-btn" (click)="adjustZoom(-10)">
+          <i class="fa-solid fa-magnifying-glass-minus"></i>
+        </button>
+
+        <span class="zoom-text"> {{ zoom }}% </span>
+
+        <button class="zoom-btn" (click)="adjustZoom(10)">
+          <i class="fa-solid fa-magnifying-glass-plus"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <div class="preview-page-container">
+        <div
+          id="preview-print-container"
+          class="preview-page"
+          [innerHTML]="cleanHtml"
+          [style.transform]="'scale(' + zoom / 100 + ')'"
+          [style.transform-origin]="'top center'"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
